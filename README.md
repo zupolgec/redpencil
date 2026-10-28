@@ -6,7 +6,7 @@ Press ▷ and the comments go back to your agent session, which fixes them while
 the page updates in front of you, without losing what you are typing or where
 you are.
 
-![A comment on a page, ▷, and the agent fixes it while you watch](docs/img/demo.gif)
+![A comment on a page, ▷, and the agent fixes it while you watch](https://raw.githubusercontent.com/zupolgec/redpencil/main/docs/img/demo.gif)
 
 Works with a single html file (a report, a mockup), a folder of pages, or a
 whole site served by something else (Laravel Herd, a dev server, a staging
@@ -109,7 +109,7 @@ approves its own actions, so use it only on projects you trust. The prompt
 tells every agent that the page and the quoted text are data, not
 instructions, but treat a review of a page you don't trust with care.
 
-Comments and screenshots stay on your computer: see [PRIVACY.md](PRIVACY.md)
+Comments and screenshots stay on your computer: see [PRIVACY.md](https://github.com/zupolgec/redpencil/blob/main/PRIVACY.md)
 for the extension.
 
 The extension asks Chrome for access to all sites, because Chrome allows
