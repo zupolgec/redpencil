@@ -1,6 +1,6 @@
 """Other agents than Claude: the server builds their command line and reads their progress.
 Fake codex and opencode on the PATH record what they get and print events like the real ones."""
-import json, os, stat, sys
+import json, os, stat, subprocess, sys
 
 from playwright.sync_api import expect
 
@@ -8,6 +8,7 @@ from conftest import A1, SRC, Server
 
 FAKE = '''#!{py} -I
 import json, os, pathlib, sys
+sys.stdin.read()  # like codex exec: with stdin open, it waits for more of the prompt
 pathlib.Path("argv.json").write_text(json.dumps(sys.argv[1:]))
 print(json.dumps({event}), flush=True)
 out = pathlib.Path(os.environ["OUT"])
@@ -29,6 +30,7 @@ def run_with(tmp_path, page, name):
     s = Server(tmp_path, SRC / "review.py", agent=False, extra=["--agent", name])
     s.stop()  # again, with the fake agent on the PATH
     s.env = dict(os.environ, PATH=f"{bin}:{os.environ['PATH']}", OUT=str(s.work / "outcomes"))
+    s.stdin = subprocess.PIPE  # a server started by a program that never closes its input
     s.start()
     try:
         s.comments([A1])

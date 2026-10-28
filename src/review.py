@@ -290,7 +290,7 @@ def run_agent(ids, run):
     log.write(f"\n=== {now()} {' '.join(ids)} ===\n")
     cmd = command(prompt(ids))
     try:
-        p = proc[run] = subprocess.Popen(cmd, cwd=root, stdout=subprocess.PIPE, stderr=log,
+        p = proc[run] = subprocess.Popen(cmd, cwd=root, stdin=subprocess.DEVNULL, stdout=subprocess.PIPE, stderr=log,
                                          text=True, env=dict(os.environ, REVIEW_WORKDIR=str(work)))
         for line in p.stdout:
             log.write(line)

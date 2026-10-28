@@ -57,7 +57,7 @@ class Server:
     def start(self, args=None):
         self.args = args = args or self.args
         env = getattr(self, "env", None) or dict(os.environ, REVIEW_AGENT=f"{sys.executable} -I {HERE / 'fake_agent.py'}")
-        self.p = subprocess.Popen([sys.executable, "-I", str(self.script), *args], env=env,
+        self.p = subprocess.Popen([sys.executable, "-I", str(self.script), *args], env=env, stdin=getattr(self, "stdin", None),
                                   stdout=subprocess.DEVNULL, stderr=subprocess.PIPE)
         up(self.url + "__status", self.p)
 
