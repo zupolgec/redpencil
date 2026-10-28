@@ -1,0 +1,12 @@
+.review/
+dist/
+__pycache__/
+.pytest_cache/
+.DS_Store
+# local only: notes in Italian with client names, real reports, personal paths
+AGENTS.md
+esempi/
+docs/*
+!docs/img/
+docs/img/*
+!docs/img/demo.gif

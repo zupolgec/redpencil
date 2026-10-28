@@ -1,0 +1,27 @@
+[project]
+name = "redpencil"
+version = "0.1.0"
+description = "Review an html page or a site in the browser: comment on it, and your coding agent fixes it while you watch."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/zupolgec/redpencil"
+Issues = "https://github.com/zupolgec/redpencil/issues"
+
+[project.scripts]
+redpencil = "redpencil:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+# one file for the server, one for the panel: src/ stays usable as plain scripts (the skills run it from there)
+[tool.hatch.build.targets.wheel]
+bypass-selection = true
+
+[tool.hatch.build.targets.wheel.force-include]
+"src/review.py" = "redpencil/__init__.py"
+"src/review.js" = "redpencil/review.js"
